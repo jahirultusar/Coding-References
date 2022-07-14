@@ -1,17 +1,21 @@
+<!--this reference is using Corey Schafer tutorial as a reference guide. he is awesome--> 
+
 After creating a virtual environment..
     # Install pandas: pip install pandas
     # to use jupyter notebook: pip install jupyterlab 
     
 
 once setup is done open desired csv file from working directory start jupyter notebook server by command
-    # jupyter notebook #Note: if kernel error happens in jupyter fix it by jupyter notebook reference 
+    # jupyter notebook  // Note: if kernel error happens in jupyter fix it by jupyter notebook reference 
     
 in jupyter open a new notebook. then
     # import pandas as pd
       
 to order to open our csv
      # df = pd.read_csv('survey_results_public.csv') 
-            // Note: df is dataframe. basically dataframe are the rows and columns of data! pd.read_csv is for pandas reading csv and the pass csv filename in parenthesis in quotation mark
+            **// Note: df is dataframe. basically dataframe are the rows and columns of data! pd.read_csv is for pandas reading csv and the pass csv filename in parenthesis in quotation mark
+                **// Series is the rows of a single column 
+                    **// DataFrame is 2d, Series is 1D
 
 to order to open our csv
      # schema_df = pd.read_csv('survey_results_schema.csv') 
@@ -21,5 +25,40 @@ to find out how many rows and columns:
     or
     # df.info() // output will be more defined
     
-to see all the columns change the setting via pandas
+***to see all the columns change the setting via pandas
     # pd.set_option('display.max_columns', number_of_colimns_we_want_to_see)
+
+        to see all the rows change the setting via pandas
+                    # pd.set_option('display.max_rows', number_of_colimns_we_want_to_see)
+                 
+                 to see the first five rows:
+                        # df.head()
+                            or df.head(10) //to see first ten rows
+                            
+                            to see last ten rows:
+                                # df.tail(10)
+                                
+ *** to create a dataframe from a dictionary{}
+        # df = pd.DataFrame() // pass the dictionary name in parenthrsis
+        
+             to access dataframe as a list:
+                # df[] //for single column or a series
+                    # df[[]] // for multiple columns
+                    
+ *** to get columns as a list
+        # df.columns
+        
+            to get rows as list with loc or iloc
+                # df.iloc[] or df.iloc[[]] // will find the location of rows via indes. for example df.iloc[0] to find first row or df.iloc[[0, 1]] for multiple rows
+                    // df.iloc cannot take column or secound argument as string. df.iloc[[0, 1], only_index_number]
+                    // df.loc only can take column or second argument as string. df.loc[[o, 1], only_string]
+                    
+                    
+                                                      ***Note***
+                *** loc or iloc slicing do not nest them in brackets. df.loc[0:2, 'column_name]
+                *** pandas slicing is upto includes. for example df.loc[0:2] will include :2 unlike python
+                
+    
+ 
+ 
+
