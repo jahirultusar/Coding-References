@@ -1,4 +1,4 @@
-<!--this reference is using Corey Schafer tutorial as a reference guide. he is awesome--> 
+<!--this reference textfile is based on Corey Schafer tutorial as a reference guide. he is awesome--> 
 
 After creating a virtual environment..
     # Install pandas: pip install pandas
@@ -59,6 +59,24 @@ to find out how many rows and columns:
                 *** pandas slicing is upto includes. for example df.loc[0:2] will include :2 unlike python
                 
     
- 
- 
+    
+    <!-- Indexes-->
+    
+    to set a new index or change it from default: //be careful to change it from deafulte
+        # df.set_index('column_name')
+            ** // we can still find the columns using df.iloc[] method  
+    
+   **to reset index:
+        # df.reset_index(inplace=True)
+
+    to sort the index alphabetically:
+            # df.sort_index() // ascending sort
+
+                to sort in reverse order
+                    # df.sort_index(ascending=False)
+
+                    to sort index permanently
+                        # df.sort_index(inplace=True)
+
+    <!-- Filtering Data-->
 
