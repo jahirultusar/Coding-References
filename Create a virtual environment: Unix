@@ -1,0 +1,35 @@
+This is a step by step guide to create a virtual environment for Unix based system
+
+# Step 1: Installing pip
+  after choosing the directory open the directory in bash terminal. then run following command:
+    python3 -m pip install --upgrade pip3 #Note: python3 -m pip install --upgrade pip will work too if only python3 installed in system
+  
+  for user specific command run:
+    python3 -m pip install --user --upgrade pip/pip3
+    
+ # Step 2: Installing virtualenv
+    python3 -m pip install --user virtualenv #Note: not needed this step if virtualenv created in the system before.
+  
+ # Step 3: Creating a virtual environment
+    python3 -m venv virtual_environment_name #Note: 
+    
+ # Step 4: Activating a virtual environment
+    source virtual_environment_name/bin/activate
+    
+  Troubleshoot:
+      if bdist_wheel error then run: pip install wheel
+    
+                    That's it!
+                    
+ 
+ Optional:
+ 
+  # To deactive a virtual environment:
+      deactivate
+      
+  # To check dependencies:
+      python3 -m pip freeze
+  
+  # To create requirements.txt file:
+      python3 -m pip install -r requirements.txt
+   
