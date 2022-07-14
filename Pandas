@@ -1,0 +1,25 @@
+After creating a virtual environment..
+    # Install pandas: pip install pandas
+    # to use jupyter notebook: pip install jupyterlab 
+    
+
+once setup is done open desired csv file from working directory start jupyter notebook server by command
+    # jupyter notebook #Note: if kernel error happens in jupyter fix it by jupyter notebook reference 
+    
+in jupyter open a new notebook. then
+    # import pandas as pd
+      
+to order to open our csv
+     # df = pd.read_csv('survey_results_public.csv') 
+            // Note: df is dataframe. basically dataframe are the rows and columns of data! pd.read_csv is for pandas reading csv and the pass csv filename in parenthesis in quotation mark
+
+to order to open our csv
+     # schema_df = pd.read_csv('survey_results_schema.csv') 
+
+to find out how many rows and columns:
+    # df.shape // output will be (number of rows, number of columns)
+    or
+    # df.info() // output will be more defined
+    
+to see all the columns change the setting via pandas
+    # pd.set_option('display.max_columns', number_of_colimns_we_want_to_see)
