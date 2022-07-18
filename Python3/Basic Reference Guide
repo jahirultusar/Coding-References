@@ -1,2 +1,104 @@
-""" This is a basic Python3 reference guide """
+""" This is a basic Python3 reference guide. Shout out to TechWithTim from youtube. Massive fan """
+  """ To keep it simple python is divided under three category (Basic, Intermediate, Expert) and referenced below """
+  
+  
+                                            #################### \./ ####################
+                                            
+                                            
+#################### Basic ####################
 
+  # Variables:
+      > Variables are containers for storing data values. A variable is created the moment you first assign a value to it.
+        for example x = 1 here x is a variable
+      
+      > Rules for Python variables:
+        * A variable name must start with a letter or the underscore character
+        * A variable name cannot start with a number
+        * A variable name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _ )
+        * Variable names are case-sensitive (age, Age and AGE are three different variables)
+        
+      > Python allows us to assign values to multiple variables in one line: x, y, z = "Orange", "Banana", "Cherry"
+        And we can assign the same value to multiple variables in one line: x = y = z = "Orange"
+      
+      > If you have a collection of values in a list, tuple etc. Python allows you to extract the values into variables. 
+         This is called unpacking. such as: 
+                                            fruits = ["apple", "banana", "cherry"]
+                                            x, y, z = fruits //list unpacked here
+      
+      > We can not concatenate (or add) two data types. It's an TypeError
+      
+      > Variables that are created outside of a function are known as global variables.
+      
+      > To change the value of a global variable inside a function, refer to the variable by using the global keyword:
+                                             x = "awesome"
+
+                                             def myfunc():
+                                               global x //changes x's value
+                                               x = "fantastic"
+
+                                             myfunc()
+                                            
+      
+
+  # Data Types:
+      > Python has the following data types built-in by default, in these categories:
+
+                  * Text Type:	str // "String" 'string'
+                  * Numeric Types:	int, float, complex // 1, 1.1, 1A
+                  * Sequence Types:	list, tuple, range // [], (), range()
+                  * Mapping Type:	dict // {"key": Value}
+                  * Set Types:	set, frozenset // x = {"apple", "banana", "cherry"} --> not key value pair
+                  * Boolean Type:	bool // True False
+                  * Binary Types:	bytes, bytearray, memoryview // b"Hello", bytearray(5), memoryview(bytes(5))
+                  * None Type:	NoneType //none
+
+                  > to get the data type of any object by using the type() function: print(type())
+  
+  # Conditions:
+      > 
+  # Chained Conditions
+  # Operators
+  # Control Flow
+  # Loops and Iterables
+  # Basic Data Structures
+  # Functions
+  # Mutable vs Immutable
+  # Common Methods
+  # File IO
+  
+
+#################### Intermediate ####################
+
+  # Comprehension
+  # Lambda Functions
+  # Collectios Module
+  # Map & Filter
+  # *args **kwargs
+  #Inheritance
+  # Advanced class
+  # Behaviour
+  # PiP
+  # Environment (venv)
+  # Async IO
+  
+
+#################### Advanced ####################
+
+  # Decorators
+  # Generators
+  # Context Managers
+  # Metaclasses
+  # Concurrency 
+  # Parallelism
+  # Testing
+  # Pacakages
+  # Cython ---> :(
+  
+
+#################### Expert ####################
+
+  # 
+  #
+  #
+  
+  
