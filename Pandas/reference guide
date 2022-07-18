@@ -78,5 +78,33 @@ to find out how many rows and columns:
                     to sort index permanently
                         # df.sort_index(inplace=True)
 
+
+
     <!-- Filtering Data-->
+    
+    to filter out data 
+    
+    
+    <!-- Alter Data-->
+    
+   // for example change column spacce with '_'
+        # df.columns = sf.columns.str.replace(' ', '_')
+        
+    // for exmple change columns in lower case
+         # df.columns = [x.lower() for x in df.columns]
+         
+     // to change name of columns
+           # df.rename(columns={'column_name': 'to_rename'}
+           
+           
+     some methods to filter data..
+     
+            .apply //to grrab some information from data and apply changes to data
+    
+    
+    <!-- Grouping and Aggregating Data-->
+    
+    // 
+    # df.groupby()
+    
 
