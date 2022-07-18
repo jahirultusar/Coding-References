@@ -43,14 +43,14 @@
   # Data Types:
       > Python has the following data types built-in by default, in these categories:
 
-                  * Text Type:	str // "String" 'string'
+                  * Text Type:	    str // "String" 'string'
                   * Numeric Types:	int, float, complex // 1, 1.1, 1A
                   * Sequence Types:	list, tuple, range // [], (), range()
-                  * Mapping Type:	dict // {"key": Value}
-                  * Set Types:	set, frozenset // x = {"apple", "banana", "cherry"} --> not key value pair
-                  * Boolean Type:	bool // True False
-                  * Binary Types:	bytes, bytearray, memoryview // b"Hello", bytearray(5), memoryview(bytes(5))
-                  * None Type:	NoneType //none
+                  * Mapping Type:	  dict // {"key": Value}
+                  * Set Types:	    set, frozenset // x = {"apple", "banana", "cherry"} --> not key value pair
+                  * Boolean Type:	  bool // True False
+                  * Binary Types:	  bytes, bytearray, memoryview // b"Hello", bytearray(5), memoryview(bytes(5))
+                  * None Type:	    NoneType //none
 
                   > to get the data type of any object by using the type() function: print(type())
   
