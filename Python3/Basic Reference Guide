@@ -7,7 +7,7 @@
                                             
 #################### Basic ####################
 
-  # Variables:
+  # Variables:---------------------------------------------------------------------------------------------------------------------------------------------
       > Variables are containers for storing data values. A variable is created the moment you first assign a value to it.
         for example x = 1 here x is a variable
       
@@ -37,10 +37,9 @@
                                                x = "fantastic"
 
                                              myfunc()
-                                            
-      
+    
 
-  # Data Types:
+  # Data Types:---------------------------------------------------------------------------------------------------------------------------------------------
       > Python has the following data types built-in by default, in these categories:
 
                   * Text Type:	    str // "String" 'string'
@@ -53,7 +52,7 @@
                   * None Type:	    NoneType //none
 
                   > to get the data type of any object by using the type() function: print(type())
-  
+
   # Conditions:
   # Chained Conditions
   # Operators
@@ -61,7 +60,59 @@
   # Loops and Iterables
   # Basic Data Structures
   # Functions
-  # Mutable vs Immutable
+  # Mutable vs Immutable: ---------------------------------------------------------------------------------------------------------------------------------
+      
+      ##### list[] #####   
+      
+      > List is a collection which is ordered and changeable. Allows duplicate members.
+          
+           --> list methods link: https://www.w3schools.com/python/python_lists_methods.asp
+                    
+                    
+      ##### tuple() #####      
+      
+      > Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
+          *Note: When creating a tuple with only one item, remember to include a comma after the item, otherwise it will not be identified as a tuple.
+          *Note: You cannot remove items in a tuple.
+          
+          --> tuple methods link: https://www.w3schools.com/python/python_tuples_methods.asp
+          
+          
+        ##### set() #####          
+        
+      > Set is a collection which is unordered, unchangeable*, and unindexed. No duplicate members.
+          *Set items are unchangeable, but you can remove and/or add items whenever you like.
+          *Sets cannot have two items with the same value.
+          *Set items can be of any data type:
+                        --> set1 = {"apple", "banana", "cherry"}
+                        --> set2 = {1, 5, 7, 9, 3}
+                        --> set3 = {True, False, False}
+          *A set can contain different data types: set1 = {"abc", 34, True, 40, "male"}
+          *Using the set() constructor to make a set: thisset = set(("apple", "banana", "cherry")) // note the double round-brackets
+          *Note: Sets are unordered, so you cannot be sure in which order the items will appear.
+          *Note: Do not use pop() methods as set() is unordered. use discard()//doesn't show error or remove()// will raise an error if item doesn't exist
+          
+          --> set methods link: https://www.w3schools.com/python/python_sets_methods.asp
+          
+                   
+      ##### dict{"key": value} #####   
+      
+      > Dictionary is a collection which is ordered** and changeable. No duplicate members.
+      > Dictionaries are used to store data values in key:value pairs.
+      > The values in dictionary items can be of any data type
+      > You can access the items of a dictionary by referring to its key name, inside square brackets:
+          // There is also a method called get() that will give you the same result:
+      > The keys() method will return a list of all the keys in the dictionary.
+      > The values() method will return a list of all the values in the dictionary.
+      > The items() method will return each item in a dictionary, as tuples in a list.
+      > The update() method will update the dictionary with the items from a given argument. If the item does not exist, the item will be added.
+          // The argument must be a dictionary, or an iterable object with key:value pairs.
+      > A dictionary can contain dictionaries, this is called nested dictionaries.{{}}
+      
+      --> dictionary methods link: https://www.w3schools.com/python/python_dictionaries_methods.asp
+      
+          ***As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered***
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------     
   # Common Methods
   # File IO
   
