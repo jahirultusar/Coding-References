@@ -1,8 +1,8 @@
+
+
 """ This is a basic Python3 reference guide. Shout out to TechWithTim from youtube. Massive fan """
   """ To keep it simple python is divided under four categories (Basic, Intermediate, Advanced & Expert) and referenced below """
   
-  
-                                            #################### \./ ####################
                                             
                                             
 #################### Basic ####################
@@ -59,7 +59,15 @@
   # Control Flow
   # Loops and Iterables
   # Basic Data Structures
-  # Functions
+  # Functions:
+      > A function is a block of code which only runs when it is called.
+      > Parameters or Arguments: 
+                                Parameter is the variable listed inside the parentheses in the function definition.
+                                Argument is the value that is sent to the function when it is called.
+                                
+      > *args: Arbitrary Arguments --> def functions(*args) //This way the function will receive a tuple of arguments 
+      > **kwargs: Arbitrary Keyword Arguments --> def functions(**kwargs) // This way the function will receive a dictionary of arguments  
+      
   # Mutable vs Immutable: ---------------------------------------------------------------------------------------------------------------------------------
       
       ##### list[] #####   
