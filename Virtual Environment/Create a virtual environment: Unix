@@ -16,6 +16,9 @@ This is a step by step guide to create a virtual environment for Unix based syst
  # Step 4: Activating a virtual environment
     source virtual_environment_name/bin/activate
     
+ # Step 5: To run the server
+    python manage.py runserver
+    
   Troubleshoot:
       if bdist_wheel error then run: pip install wheel
     
