@@ -74,7 +74,10 @@
       
       > List is a collection which is ordered and changeable. Allows duplicate members.
           
+          * String is a list of char! 
+          
            --> list methods link: https://www.w3schools.com/python/python_lists_methods.asp
+           
                     
                     
       ##### tuple() #####      
