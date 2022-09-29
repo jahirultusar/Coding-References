@@ -1,0 +1,7 @@
+### List
+    // list indexes to reverse list_name[::-1]
+      example:
+            word = list("word") --> string becomes a list = ['w', 'o', 'r', 'd']
+            reverse_word = word[::-1] --> output ['d', 'r', 'o', 'w']
+            
+    //             
