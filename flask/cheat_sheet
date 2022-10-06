@@ -1,1 +1,25 @@
+""" This is a flask cheat sheet for everyday referance """
 
+##### Installation ####
+
+step 1: create a virtual environment & activate
+    --> see virtual environment coding referances if necessary
+
+step 2: install flask in the virtual environment using pip/pip3
+    --> pip3 install flask
+      --> check flask version = python3 -c "import flask; print(flask.__version__)"
+
+step 3: create a basic application and check if flask working
+    --> 
+        from flask import Flask
+
+        app = Flask(__name__)
+
+        @app.route('/')
+        def hello():
+            return 'Hello, World!'
+
+        --> then run it in debug mode following these command
+            ¬ flask --app hello(app_name) run 
+            
+            ##########****** DEBUG MODE ON BY DEFAULT!!!******##########
