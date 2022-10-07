@@ -1,0 +1,22 @@
+< PROJECT ROOT >
+   |
+   |-- app/
+   |    |-- static/
+   |    |    |-- <css, JS, images>    # CSS files, Javascripts files
+   |    |
+   |    |-- templates/
+   |    |    |
+   |    |    |-- index.html           # Index File
+   |    |    |-- login.html           # Login Page
+   |    |    |-- register.html        # Registration Page
+   |    |    
+   |    |
+   |   config.py                      # Provides APP Configuration 
+   |   forms.py                       # Defines Forms (login, register) 
+   |   models.py                      # Defines app models 
+   |   views.py                       # Application Routes 
+   |
+   |-- requirements.txt
+   |-- run.py
+   |
+   |-- **************************************
