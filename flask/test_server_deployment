@@ -1,0 +1,35 @@
+"""These steps may vary slightly depending on hosting provider but mostly same for all linux based servers""" 
+"""This instructions are following Tech with Tim youtube video. link: https://www.youtube.com/watch?v=YFBRVJPhDGY"""
+
+    #####  for apache server ####
+
+step 1: open up local ssh shell/ unix terminal/ putty(for windows)
+
+step 2: login to remote server via ssh
+    cmd: ssh username@remote_host_ip
+      -->then type password on prompt
+step 3: after logging in do a system wide update
+    cmd: sudo apt update
+   
+step 4: install apache 
+    cmd: sudo apt install apache2
+    
+step 5: check if apache server running
+    cmd: apache2 -version
+
+step 6: if apache running without error configure host firewall
+    to check firewall list 
+    cmd: sudo ufw app list
+
+step 7: if apache in list then allow it in firewall
+    cmd: sudo ufw allow 'Apache'
+
+step 8: configure apache and see if it's actually running
+    cmd: sudo systemctl status apache2
+        
+        if apache active and running it will show in green. to exit from that config shell press ctrl+c
+
+step 9: now next step is to install few libraries. first mod-wsgi for python3. 
+    warning: in the video cmd: sudo apt-get install libapache2-mod-wsgi python-dev is not working for python3. so use command below:
+      
+      cmd: sudo apt-get install libapache2-mod-wsgi-py3   --> note:(working!)
