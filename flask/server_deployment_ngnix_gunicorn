@@ -1,0 +1,169 @@
+"""These steps may vary slightly depending on hosting provider but mostly same for all linux based servers""" 
+"""These instructions are from brilliant Corey Schafer video. link: https://www.youtube.com/watch?v=goToXTC96Co"""
+"""
+cmd = command
+"""
+    #####  for Ngnix Gunicorn server in Ubuntu ####
+    
+#### step 1: configure sever ####
+    
+step 1.1: open up local ssh shell/ unix terminal/ putty(for windows)
+
+step 1.2: login to remote server via ssh
+    cmd: ssh username@remote_host_ip
+      -->then type password on prompt
+step 1.3: after logging in do a system wide update and upgrade
+    cmd: apt update && apt upgrade (first time recommended)
+    cmd: sudo apt update
+    
+step 1.4: set hostname
+    cmd: hostnamectl set-hostname [hostname ie: flask-server]
+        note:type hostname to double check what hostname is created
+
+step 1.5: add hostname to the host file
+    first open host file using nano
+        cmd: nano /etc/hosts
+        then under the localhost IP(127.0.0.1) in new line write VPS or dedicated server IP provided by cloud provider.
+        then ctrl+x to back out and save on prompt and then ctrl+x to back in the shell again
+ 
+step 1.6: add a limited user with sudo privilege (currently we are on root!)
+    cmd: adduser [username]
+        -->then type a strong password on prompt followed by optional information
+    
+    after that add newly created user to the sudo group
+    cmd: adduser [username] sudo
+    
+    **now log back in the server with newly created sudo user
+    cmd: exit (to logout from the server)
+    
+    then log back in with new sudo user
+    cmd: ssh [new_sudo_user]@[ip_address], the new user [password] on prompt
+   
+#####step 2:  SSH key based authentication setup for remote server  ####
+""" This step is optinal but necessary for security, against brute force attack and also saves time """  
+
+
+                    ### Manual steps(recommended): for linux local machines ###
+                    
+step 2.1: create private key (for local machine) and public key (remote or even virtual machine)
+    generate ssh key (local machine terminal):
+        cmd: ssh-keygen -t rsa -b 4096
+            --> key will generate with a fingerprint id and a random image in local default ~/.ssh directory
+            --> now if we cd into cmd: cd ~/.ssh directory and cmd: ls -la we will see id_rsa private key and id_rsa.pub as public key 
+
+step 2.2: push ssh public key to remote sever
+    --> first check if we are in remote server's home dircectory by cmd: pwd or just cmd: cd to go to home directory
+    --> then make new .ssh directory in remote home directory by cmd: mkdir .ssh
+    
+    now we are gonna push our locally created ssh public key to remote .ssh directory from local .ssh directory. 
+    **we are gonna use scp command which allows us to copy file from our local terminal.
+        ** first we need to make sure we are in .ssh directory in our local machine
+            then type cmd below in our local machine
+                cmd: scp ~/.ssh/id_rsa.pub [user_name]@[remote_ip]:/home/[username]/.ssh/[uploaded_key].pub 
+                    ** make sure we check our cmd above precisely and according to our own usernames and directories 
+
+    now if we check in our remote connected shell by cmd: ls .ssh/ we will see uploaded_key.pub is created and uploaded
+    
+step 2.3: append the newly uploaded key as authorized key file
+    cmd: cat ~/.ssh/uploaded_key.pub >> ~/.ssh/authorized_keys
+    ** command above will append/add the public key to authorized_keys file(no file extension needed for unix servers)
+    ** now if we cmd: cat ~/.ssh/authorized_keys we will see the public key that just added to the authorized_key file
+    
+step 2.4: now we need to setup correct permission for our public key .ssh folder(code=700) and authorized_key file(code=600)
+    --> first we set permission 700 to ~/.ssh/ folder by
+        cmd: chmod 700 ~/.ssh/ (this will give the folder necessary 700 permission to .ssh folder)
+    
+    --> then we will set permission 600 to all the files in .ssh folder by
+        cmd: chmod 600 ~/.ssh/*
+        
+""" now we should be able to login from local to remote system without password. 
+    To double chek logout from remote machine by cmd: exit and log back in with only ssh [username]@[remote_ip]
+    We should be logged in without any password.
+"""
+
+    ## additional steps for maximum security and force all user to log in with ssh key and not with any password on remote server ##
+        
+        ### *** important: Changing config file incorrectly might cause fatal errors in the server!!! *** ###
+        
+    ** First we need to backup remote ssh config file for obvious reason**
+    step 2.5: backing up ssh config file by copying it to same folder
+        cmd: sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+            --> command above will make a backup of config file
+    
+    step 2.6: now change the config file with nano editor
+        cmd: sudo nano /etc/ssh/sshd_config
+        
+        ** after that config file will open in nano editor and we need to find PasswordAuthentication and change it from yes to no
+            and uncomment it if it was commented via deleting # sign in front. then ctrl+x and save it. 
+            note: we can add PasswordAuthentication no line if it isnt there! ** 
+            
+    step 2.7: now we need to restart the ssh service to activate the changes by command
+        cmd: sudo service ssh restart
+        
+    
+                        ### Easy steps(lazy way): for linux local machines or for Mac systems via Homebrew package manager ###
+    
+    ** for local Mac system install homebrew and then go .ssh folder and cmd: brew install ssh-copy-id --> to access the ssh key gen
+    *** then cmd: ssh-copy-id [username]@[remote_ip] to copy the public key
+    
+    **** then ssh into remote machine ssh [username]@[remote_ip] and we should be able to log in without making any ssh file in local machine or password
+    ***** we still need to manually disable PasswordAuthentication to no
+    
+
+
+
+step 4: install apache 
+    cmd: sudo apt install apache2
+    
+
+
+ 
+step 5: check if apache server running
+    cmd: apache2 -version
+
+step 6: if apache running without error configure host firewall
+    to check firewall list 
+    cmd: sudo ufw app list
+
+step 7: if apache in list then allow it in firewall
+    cmd: sudo ufw allow 'Apache'
+
+step 8: configure apache and see if it's actually running
+    cmd: sudo systemctl status apache2
+        
+        if apache active and running it will show in green. to exit from that config shell press ctrl+c
+
+step 9: now next step is to install few libraries. first mod-wsgi for python3. 
+    warning: in the video cmd: sudo apt-get install libapache2-mod-wsgi python-dev is not working for python3. so use command below:
+      
+      cmd: sudo apt-get install libapache2-mod-wsgi-py3   --> note:(working!)
+      
+step 10: now we need to go to te directory where we are gonna deploy our flask app. in this case cd to
+    cmd: cd /var/www/
+    
+    then in /var/www make a new directory, in this case 
+        cmd: mkdir webApp (this will create a new folder or directory named: webApp. it's important to remeber this name for later!)
+        
+    now cd into webApp or the directory name we just created
+        cmd:  cd webApp
+        
+step 11: now in webApp we are gonna install python3 and pip (make sure we are in right directory, in this case webApp)
+    cmd: sudo apt-get install python3-pip
+    
+    now check python version and pip version just in case before next step
+    cmd: python3 --version
+    cmd: pip3 --version
+    
+    after all those checks out, we are gonna install flask and the database library like SQLite or SQlAlchemy.
+    !note: please make sure to go back or cd to the app directory(in this case: cd /var/www/webApp) everytime we back out from shell
+    
+step 12: install flask in webApp directory
+    cmd: 
+
+
+#####  tips and tricks  #####
+
+--> to change a password of root or any user type
+    cmd: passwd [username]  
+        username = root or created_user
+    then change the password on prompt
