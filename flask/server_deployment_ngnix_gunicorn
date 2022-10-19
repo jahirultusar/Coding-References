@@ -1,8 +1,8 @@
+
 """These steps may vary slightly depending on hosting provider but mostly same for all linux based servers""" 
 """These instructions are from brilliant Corey Schafer video. link: https://www.youtube.com/watch?v=goToXTC96Co"""
-"""
-cmd = command
-"""
+
+
     #####  for Ngnix Gunicorn server in Ubuntu ####
     
 #### step 1: configure sever ####
@@ -39,7 +39,7 @@ step 1.6: add a limited user with sudo privilege (currently we are on root!)
     then log back in with new sudo user
     cmd: ssh [new_sudo_user]@[ip_address], the new user [password] on prompt
    
-#####step 2:  SSH key based authentication setup for remote server  ####
+##### step 2:  SSH key based authentication setup for remote server  ####
 """ This step is optinal but necessary for security, against brute force attack and also saves time """  
 
 
