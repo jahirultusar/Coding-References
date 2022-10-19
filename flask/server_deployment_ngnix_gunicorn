@@ -1,11 +1,10 @@
+""" This is a step by guide to configure, test and deploy flask app to a cloud server """ 
+""" These steps may vary slightly depending on hosting provider but mostly same for all linux based servers """ 
+""" Credit goes to brilliant Corey Schafer and his youtube video. link: https://www.youtube.com/watch?v=goToXTC96Co """
 
-"""These steps may vary slightly depending on hosting provider but mostly same for all linux based servers""" 
-"""These instructions are from brilliant Corey Schafer video. link: https://www.youtube.com/watch?v=goToXTC96Co"""
 
 Part 1: Server Configuration
-
-
-    #####  for Ngnix Gunicorn server in Ubuntu ####
+#####  for Ngnix Gunicorn server in Ubuntu ####
     
 #### step 1: configure sever ####
     
@@ -13,7 +12,7 @@ step 1.1: open up local ssh shell/ unix terminal/ putty(for windows)
 
 step 1.2: login to remote server via ssh
     cmd: ssh username@remote_host_ip
-      -->then type password on prompt
+      --> then type password on prompt
 step 1.3: after logging in do a system wide update and upgrade
     cmd: apt update && apt upgrade (first time recommended)
     cmd: sudo apt update
@@ -30,7 +29,7 @@ step 1.5: add hostname to the host file
  
 step 1.6: add a limited user with sudo privilege (currently we are on root!)
     cmd: adduser [username]
-        -->then type a strong password on prompt followed by optional information
+        --> then type a strong password on prompt followed by optional information
     
     after that add newly created user to the sudo group
     cmd: adduser [username] sudo
@@ -40,8 +39,10 @@ step 1.6: add a limited user with sudo privilege (currently we are on root!)
     
     then log back in with new sudo user
     cmd: ssh [new_sudo_user]@[ip_address], the new user [password] on prompt
+
+
    
-##### step 2:  SSH key based authentication setup for remote server  ####
+Part 2:  SSH key based authentication setup for remote server
 """ This step is optinal but necessary for security, against brute force attack and also saves time """  
 
 
@@ -119,7 +120,8 @@ step 2.4: now we need to setup correct permission for our public key .ssh folder
     
 
 
-##### step 3: configure remote host firewall  ####    
+
+Part 3: configure remote host firewall 
 
 step 3.1: we are gonna install ufw or "uncomlicated firewall in remote host
     cmd: sudo apt install ufw
@@ -142,6 +144,25 @@ step 3.2: firewall rules -->
         
 step 3.3: save and enable firewall rules
     cmd: sudo ufw enable
+
+
+Part 4: Test and deploy the flask app
+step 4.1: Get the environment ready. If local app is in a virtual environment(which is highly recommended)
+          then we need to make a requirements.txt file but before that we can check all the dependencies 
+          in our virtual environment. To do that type the following command in an active virtual environment
+          
+          cmd: pip freeze
+          
+step 4.2: To make an requirements.txt file in local Linux/Mac environment
+
+    cmd: pip freeze > requirements.txt
+    
+    now we need to upload all the files from local virtual environment to remote server home directory
+    
+step 4.3: 
+    
+
+
 
 
 
