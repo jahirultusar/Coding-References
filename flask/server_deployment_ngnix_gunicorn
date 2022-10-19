@@ -2,6 +2,8 @@
 """These steps may vary slightly depending on hosting provider but mostly same for all linux based servers""" 
 """These instructions are from brilliant Corey Schafer video. link: https://www.youtube.com/watch?v=goToXTC96Co"""
 
+Part 1: Server Configuration
+
 
     #####  for Ngnix Gunicorn server in Ubuntu ####
     
@@ -80,6 +82,8 @@ step 2.4: now we need to setup correct permission for our public key .ssh folder
 """ now we should be able to login from local to remote system without password. 
     To double chek logout from remote machine by cmd: exit and log back in with only ssh [username]@[remote_ip]
     We should be logged in without any password.
+    
+    ***important: we should change PermitRootLogin to no for added layer of security if necessary in config file
 """
 
     ## additional steps for maximum security and force all user to log in with ssh key and not with any password on remote server ##
@@ -115,54 +119,30 @@ step 2.4: now we need to setup correct permission for our public key .ssh folder
     
 
 
+##### step 3: configure remote host firewall  ####    
 
-step 4: install apache 
-    cmd: sudo apt install apache2
+step 3.1: we are gonna install ufw or "uncomlicated firewall in remote host
+    cmd: sudo apt install ufw
     
-
-
- 
-step 5: check if apache server running
-    cmd: apache2 -version
-
-step 6: if apache running without error configure host firewall
-    to check firewall list 
-    cmd: sudo ufw app list
-
-step 7: if apache in list then allow it in firewall
-    cmd: sudo ufw allow 'Apache'
-
-step 8: configure apache and see if it's actually running
-    cmd: sudo systemctl status apache2
+    --> to check if ufw is active after installation 
+        cmd: sudo ufw status 
+        --> if not active enable by
+            cmd: sudo ufw enable
+            
+    now we can see the status of our firewall rules and manipulate them to our security need
+    
+step 3.2: firewall rules -->
+    cmd: sudo ufw default allow outgoing 
+    cmd: sudo ufw dafault deny incoming
+    cmd: sudo ufw allow ssh
+    
+    *** for setting up development test server port 5000 
+        cmd: sudo ufw allow 5000
+        --> now development port 5000 is active 
         
-        if apache active and running it will show in green. to exit from that config shell press ctrl+c
+step 3.3: save and enable firewall rules
+    cmd: sudo ufw enable
 
-step 9: now next step is to install few libraries. first mod-wsgi for python3. 
-    warning: in the video cmd: sudo apt-get install libapache2-mod-wsgi python-dev is not working for python3. so use command below:
-      
-      cmd: sudo apt-get install libapache2-mod-wsgi-py3   --> note:(working!)
-      
-step 10: now we need to go to te directory where we are gonna deploy our flask app. in this case cd to
-    cmd: cd /var/www/
-    
-    then in /var/www make a new directory, in this case 
-        cmd: mkdir webApp (this will create a new folder or directory named: webApp. it's important to remeber this name for later!)
-        
-    now cd into webApp or the directory name we just created
-        cmd:  cd webApp
-        
-step 11: now in webApp we are gonna install python3 and pip (make sure we are in right directory, in this case webApp)
-    cmd: sudo apt-get install python3-pip
-    
-    now check python version and pip version just in case before next step
-    cmd: python3 --version
-    cmd: pip3 --version
-    
-    after all those checks out, we are gonna install flask and the database library like SQLite or SQlAlchemy.
-    !note: please make sure to go back or cd to the app directory(in this case: cd /var/www/webApp) everytime we back out from shell
-    
-step 12: install flask in webApp directory
-    cmd: 
 
 
 #####  tips and tricks  #####
