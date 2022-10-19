@@ -76,6 +76,7 @@ step 2.4: now we need to setup correct permission for our public key .ssh folder
     --> then we will set permission 600 to all the files in .ssh folder by
         cmd: chmod 600 ~/.ssh/*
         
+        
 """ now we should be able to login from local to remote system without password. 
     To double chek logout from remote machine by cmd: exit and log back in with only ssh [username]@[remote_ip]
     We should be logged in without any password.
@@ -84,6 +85,7 @@ step 2.4: now we need to setup correct permission for our public key .ssh folder
     ## additional steps for maximum security and force all user to log in with ssh key and not with any password on remote server ##
         
         ### *** important: Changing config file incorrectly might cause fatal errors in the server!!! *** ###
+        
         
     ** First we need to backup remote ssh config file for obvious reason**
     step 2.5: backing up ssh config file by copying it to same folder
@@ -101,13 +103,15 @@ step 2.4: now we need to setup correct permission for our public key .ssh folder
         cmd: sudo service ssh restart
         
     
-                        ### Easy steps(lazy way): for linux local machines or for Mac systems via Homebrew package manager ###
+                    
+                    ### Easy steps(lazy way): for linux local machines or for Mac systems via Homebrew package manager ###
+                    
     
-    ** for local Mac system install homebrew and then go .ssh folder and cmd: brew install ssh-copy-id --> to access the ssh key gen
-    *** then cmd: ssh-copy-id [username]@[remote_ip] to copy the public key
+    * for local Mac system install homebrew and then go .ssh folder and cmd: brew install ssh-copy-id --> to access the ssh key gen
+    ** then cmd: ssh-copy-id [username]@[remote_ip] to copy the public key
     
-    **** then ssh into remote machine ssh [username]@[remote_ip] and we should be able to log in without making any ssh file in local machine or password
-    ***** we still need to manually disable PasswordAuthentication to no
+    *** then ssh into remote machine ssh [username]@[remote_ip] and we should be able to log in without making any ssh file in local machine or password
+    **** we still need to manually disable PasswordAuthentication to no
     
 
 
