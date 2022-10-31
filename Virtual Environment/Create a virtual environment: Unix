@@ -11,7 +11,7 @@ This is a step by step guide to create a virtual environment for Unix based syst
     python3 -m pip install --user virtualenv #Note: not needed this step if virtualenv created in the system before.
   
  # Step 3: Creating a virtual environment
-    python3 -m venv virtual_environment_name #Note: 
+    python3 -m venv virtual_environment_name #Note: Start from this step if system already prepped for V environment
     
  # Step 4: Activating a virtual environment
     source virtual_environment_name/bin/activate
