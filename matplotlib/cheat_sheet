@@ -1,0 +1,17 @@
+"""This is a Matplotlib cheat sheet"""
+
+* after activating the venv install matplotlib using
+
+    ¬ pip3 install matplotlib
+    
+* reading .csv file
+
+    but first import:
+      
+      ¬ import matplotlib.pyplot as plt
+      ¬ import csv
+      
+    then:
+      
+      ¬ with open('filename.csv','r') as csvfile:
+        plots = csv.reader(csvfile, delimiter = ',')
