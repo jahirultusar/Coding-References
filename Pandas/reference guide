@@ -96,9 +96,57 @@ to find out how many rows and columns:
            
      some methods to filter data..
      
-            .apply //to grrab some information from data and apply changes to data
+            .apply() //to grab some information from data and apply changes to data
+            for example: 
+                
+                df.apply(len) will give us the length of all the rows
+                df.apply(len, axis='columns') will give us length of all the columns
+                df.apply(pd.Series.min) will give us all the info in first row/series
+                
+            .applymap() // works only for dataframe not for series
+                this is useful when we want lets say lower case to whole dataframe
+                df.applymap(str.lower)
+               
+             .map() // method only works for series
+                //note incorrect use of map() can give us NaN unwanted value
+             
+             .replace() // method replaces series data
+               
+    
+    add or remove rows and columns:
+    
+    columns:
+    
+        add two columns tgether:
+        df['new_column'] = df['first_column'] + ' ' + df['second_column']
+        
+        remove a column:
+        df.drop(columns=['column_name', 'or_names'])
+        
+        split a column: // split strings 
+        df['column_name'].str.split(' ')
+        
+        split a column and seperate in two different columns
+        df['column_name'].str.split(' ', expand=True)
+            and to assign them with column name:
+                df[['column_1', 'column_2']] = df['column_name'].str.split(' ', expand=True)
+         
+        ****to make any change permanent put --> inplace=True
+                
+                
+    rows:
+    
+        to add new row at the end of the dataframe
+        df.append('new_df', ignore_index=True)
+        
+        to delete a complete row 
+        df.drop(index=number)
+        
+
+    <!-- Sorting Data -->
     
     
+        
     <!-- Grouping and Aggregating Data-->
     
     // 
