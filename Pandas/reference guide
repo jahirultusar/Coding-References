@@ -12,13 +12,10 @@ in jupyter open a new notebook. then
     # import pandas as pd
       
 to order to open our csv
-     # df = pd.read_csv('survey_results_public.csv') 
+     # df = pd.read_csv('file_name.csv') 
             **// Note: df is dataframe. basically dataframe are the rows and columns of data! pd.read_csv is for pandas reading csv and the pass csv filename in parenthesis in quotation mark
                 **// Series is the rows of a single column 
                     **// DataFrame is 2d, Series is 1D
-
-to order to open our csv
-     # schema_df = pd.read_csv('survey_results_schema.csv') 
 
 to find out how many rows and columns:
     # df.shape // output will be (number of rows, number of columns)
@@ -88,13 +85,13 @@ to find out how many rows and columns:
     <!-- Alter Data-->
     
    // for example change column spacce with '_'
-        # df.columns = sf.columns.str.replace(' ', '_')
+        # df.columns = df.columns.str.replace(' ', '_')
         
     // for exmple change columns in lower case
          # df.columns = [x.lower() for x in df.columns]
          
      // to change name of columns
-           # df.rename(columns={'column_name': 'to_rename'}
+           # df.rename(columns={'column_name': 'to_rename'})
            
            
      some methods to filter data..
