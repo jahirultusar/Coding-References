@@ -161,6 +161,9 @@ to find out how many rows and columns:
     <!-- Grouping and Aggregating Data-->
     
     # df.describe() // quick overview of data (not preferable)
+    
+    
     # df.groupby()
+        // useful for getting data by specific series for example ['country']
     
 
