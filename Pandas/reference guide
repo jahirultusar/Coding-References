@@ -145,11 +145,22 @@ to find out how many rows and columns:
 
     <!-- Sorting Data -->
     
-    
+        df.sort_values(by=['whatever_order_we_want_to_sort_out_with'])
+        
+        if not ascending then:
+        df.sort_values(by=['whatever_order_we_want_to_sort_out_with'], ascending=False)
+        
+        to make it permanent:
+        add: inplace=True
+        
+        also we can sort series
+        
+        to find the largest numbers in a column:
+        df['column_name']n.largest(5)
         
     <!-- Grouping and Aggregating Data-->
     
-    // 
+    # df.describe() // quick overview of data (not preferable)
     # df.groupby()
     
 
