@@ -31,7 +31,7 @@ to install git if not already, please go to git-scm.com
 	!note: all tracked files colored green
 
 // create .ignore files
-	> touch .gitignore
+	> touch .gitignore 
 	
 	then add any <.files> in the .gitignore text file that needs to be ignored. like:
 		**/.DS_Store
