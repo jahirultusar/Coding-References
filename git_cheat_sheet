@@ -1,0 +1,121 @@
+
+"""This is a git cheat sheet based on brilliant teacher and youtuber Corey Schafar"""
+
+
+to install git if not already, please go to git-scm.com
+
+// first time setup:
+
+	> git --version (to check if installed)
+	> global variables:
+		git config --global user.name "user name"
+		git config --global user.email "user email"
+		git config --list
+	> git help <verb>
+	> git config --help
+
+!// local git initialisation/start tracking:
+	> git init
+	
+	!note: now there will be a .git file in directory if everything is right. 
+	
+	!note: to double check do ls -la again
+	
+// to stop tracking the whole project(extreme case):
+	> rm -rf .git
+	
+// before first commit check status (recommended)
+	> git status
+	
+	!note: all untracked files colored red
+	!note: all tracked files colored green
+
+// create .ignore files
+	> touch .gitignore
+	
+	then add any <.files> in the .gitignore text file that needs to be ignored. like:
+		**/.DS_Store
+		*.pyc
+		.venv 
+		
+
+!note: master/main/no will be created until we commit something! so do a inital test commit :) 
+
+// to find 
+
+// to find the current working branch
+	> git branch
+
+// to create a new branch:
+	> git branch <branch name>
+
+// to switch the branch
+	> git checkout <branch name>
+
+// to change the default branch from master/main to whatever:
+	> git config --global init.defaultBranch <name>
+
+// to rename current branch:
+	> git branch -m <name>
+	
+
+!// important: there are three stages of git
+	
+	stage 1: working directory (untracked files)
+		> ls -la
+		
+	stage 2: staging area (tracked/pre commit files)		
+	to add/track a file:  
+			> git add <filename>
+		
+		to add/track everything(probably not recommended):
+			> git add -A
+		
+		to untrack a file:
+			> git reset <filename>
+		
+		to untrack everything(probably not recommended):
+			> git reset
+			
+	stage 3: .git directory/Repository (commit to local)
+		
+		to commit a file:
+			> git commit -m "important message"
+
+// "git pull" pull files from remote to local
+	!note: very important to pull before push when we do collaborative work
+	> git pull origin <branch name>
+
+// "git push" pushing commited files to cloud/github:
+	first time:
+	> git push -u origin <branch name>
+	
+	usually: 
+	> git push origin <branch name>
+
+// merge a branch (local):
+	> git checkout master
+	> git pull origin master
+	> git branch --merged
+	!> git merge <branch name>
+	> git push origin master
+
+// delete a branch:
+	> git branch -d <branch name>
+	> git branch -a
+	> git push origin --delete <branch name>
+
+// cloning a remote repo:
+	
+	> git clone <url> <where to clone>
+
+// viewing info about remote repo:
+	> git remote -v
+	> git branch -a
+
+// useful git commands:
+	
+	> git status
+	> git log
+	> git diff
+
