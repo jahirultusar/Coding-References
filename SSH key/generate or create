@@ -1,0 +1,41 @@
+
+
+check for existing key:
+  > ls -al ~/.ssh
+  
+  if exists there will be file name like:
+    
+    id_ed25519
+    id_ed25519.pub
+    
+    or     
+    
+    id_rsa
+    id_rsa.pub
+    
+if doesnt exists then we need to create one
+
+step 1: open a terminal and type:
+  > ssh-keygen -t ed25519 -C "<label>"
+  
+  note: Using the label, you can label your SSH keys. 
+  If we are creating this ssh key pair only for connecting to GitHub, 
+  we can consider using the “<username@Github>” format as your label.
+  
+  If system does not support the Ed25519 algorithm, 
+  you can use the RSA algorithm instead:
+  
+  > ssh-keygen -t rsa -b 4096 -C "<label>"
+  
+  
+  Adding to SSH-agent:
+  
+  Now that we have an SSH key pair, we can add our keys to the ssh-agent.
+  ssh-agent is a key manager for SSH. Adding the keys to the ssh-agent saves you from typing the passphrase again and again.
+  To add our keys to the ssh-agent we start the ssh-agent in the background.
+  > eval "$(ssh-agent -s)"
+  
+  Now that we have our ssh-agent started, we add our key pair to the ssh.
+  > ssh-add ~/.ssh/id_ed25519
+  
+  Note: If we have used a different directory/filename during key creation, replace ~/.ssh/id_ed25519 with the key location.
