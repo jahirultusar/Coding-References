@@ -10,4 +10,9 @@ def hello_world():
     return "<p>Hello, World!</p>"    
     
     if __name__ == "__main__":
-         app.run()
+         app.run(debug=True)  <--important: debug true only for development server
+
+# to automatically run the local server in command shell:
+    
+    export FLASK_ENV=development
+    export FLASK_APP=app_name.py
