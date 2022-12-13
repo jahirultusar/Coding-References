@@ -1,0 +1,14 @@
+"""A guide to connect local repo to Github"""
+
+At the top of your repository on GitHub.com's Quick Setup page, click "HTTPS/SSH button" to copy the remote repository URL.
+
+In terminal/CLI, add the copied URL for the remote repository where your local repository will be pushed.
+ 
+  > git remote add origin <REMOTE_URL>
+  // Sets the new remote
+  
+  > git remote -v
+  // Verifies the new remote URL
+  
+Push the changes in your local repository to GitHub.com
+  > git push origin <remote branch name>
