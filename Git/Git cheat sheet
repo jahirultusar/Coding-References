@@ -118,4 +118,7 @@ to install git if not already, please go to git-scm.com
 	> git status
 	> git log
 	> git diff
+	
+// find git remote url
+	> git remote -v
 
