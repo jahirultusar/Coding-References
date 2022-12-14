@@ -1,0 +1,17 @@
+
+
+{% ... %} for Statements
+{{ ... }} for Expressions to print to the template output
+{# ... #} for Comments not included in the template output
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+{% endblock content %}
+
+
+{% block title %}
+{% endblock title %}
+
+{{ url_for('index') }}
