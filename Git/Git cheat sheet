@@ -70,6 +70,8 @@ to install git if not already, please go to git-scm.com
 		
 		to add/track everything(probably not recommended):
 			> git add -A
+		to add a folder and everything in it:
+			> git add folder_name/\*
 		
 		to untrack a file:
 			> git reset <filename>
