@@ -38,4 +38,4 @@ step 1: open a terminal and type:
   Now that we have our ssh-agent started, we add our key pair to the ssh.
   > ssh-add ~/.ssh/id_ed25519
   
-  Note: If we have used a different directory/filename during key creation, replace ~/.ssh/id_ed25519 with the key location.
+  Note: If we have used a different directory/filename during key creation, replace ~/.ssh/id_ed25519 with the key location
