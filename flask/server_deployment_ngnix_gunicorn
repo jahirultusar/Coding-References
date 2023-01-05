@@ -6,7 +6,7 @@
 Part 1: Server Configuration
 #####  for Ngnix Gunicorn server in Ubuntu ####
     
-#### step 1: configure sever ####
+#### Configure Linux sever ####
     
 step 1.1: open up local ssh shell/ unix terminal/ putty(for windows)
 
