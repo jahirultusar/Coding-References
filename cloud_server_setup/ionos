@@ -1,5 +1,13 @@
 step 1: log in to cloud panel and create server under infrastructure tab if it's not created already
-
+  progress: done
+  
 step 2: create cloud backup plan
 
-step 3
+step 3: server setup for jahirulTusar
+  
+  / ssh user: flask-server (limited user created added to sudo group which is not root)
+  
+  / flask-server user added to the sudo group
+  
+  / ssh key created and pushed from local machine to server for passwordless and secured remote entry
+  
