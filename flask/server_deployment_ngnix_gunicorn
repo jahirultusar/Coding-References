@@ -4,7 +4,7 @@
 
 
 Part 1: Server Configuration
-#####  for Ngnix-Gunicorn server For Linux ####
+#####  for Nginx-Gunicorn server For Linux ####
     
 #### Configure Linux sever ####
     
@@ -213,22 +213,22 @@ step 4.9: lets see what is in our main_app.py file has by
     now if we go to our ip_address:5000 we will see our project is working
     
     !DEBUG: ok so in this step I came across an annoying problem where my site static files were not serving correctly but my html files were! 
-            After few hours of debugging and thorough check I found out that it was NGINX which had not the right permission to read the static files! weird eh?
-            so I have to give right permission to NGINX. First I had to find out the NGNIX_user_name in ngnix.conf (usually this config file lies in /etc directory)
+            After few hours of debugging and thorough check I found out that it was Nginx which had not the right permission to read the static files! weird eh?
+            so I have to give right permission to Nginx. First I had to find out the Nginx_user_name in nginx.conf (usually this config file lies in /etc directory)
             also usually the user name is www-data
 
             Since Nginx is handling the static files directly, it needs access to the appropriate directories. 
             We need to give it executable permissions for our home directory. The safest way to do this is to add the Nginx user to our own user group. 
             We can then add the executable permission to the group owners of our home directory, giving just enough access for Nginx to serve the files:
     
-            cmd: sudo usermod -a -G your_user www-data 
-            
-            --> this will add the nginx user to our own user group
-            --> example: sudo usermod -a -G tusar www-data
-            
-            cmd: sudo chown -R :www-data /path/to/your/static/folder
-            
-            --> this will give nginx correct permission to read and serve the static files
+                cmd: sudo usermod -a -G your_user www-data 
+
+                --> this will add the Nginx user to our own user group
+                --> example: sudo usermod -a -G tusar www-data
+
+                cmd: sudo chown -R :www-data /path/to/your/static/folder
+
+                --> this will give Nginx correct permission to read and serve the static files
             
 
 
