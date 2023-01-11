@@ -152,15 +152,92 @@ step 4.1: Get the environment ready. If local app is in a virtual environment(wh
           in our virtual environment. To do that type the following command in an active virtual environment
           
           cmd: pip freeze
+          --> this command will show us all the dependencies we are using in our local virtual environment
           
 step 4.2: To make an requirements.txt file in local Linux/Mac environment
 
     cmd: pip freeze > requirements.txt
+    --> this command will make a requirements.txt file in our local project directory
+    (IMPORTANT: We need to make sure our our virtual envrionment is active otherwise all the Global dependencies/libraries will show up in requiremnets.txt)
     
-    now we need to upload all the files from local virtual environment to remote server home directory
+step 4.3: now we need to upload all the files from local virtual environment to remote server home directory. 
+            
+            There are two ways to do it:
+                #1: through SSH CLI using command
+                    cmd: scp -r local_dircetory_project_folder remote_cloud_user@remote_IP_address:~/ (~/ remote user home folder)
+                    
+                    example: scp -r Desktop/Project_Folder tusar@45.33.123.214:~/
+                    --> this command will copy everything local to remote folder. check th ls command in remote server if project directory copied as intended
+                    
+                #2: through FTP/SFTP protocol like Filezilla
+                    for this we need remote host user name, port(22), password
+
+step 4.4: now in the ~/ (user directory) we need to install python3 and pip (not venv yet, it's on next step. also using python3 usually not pyhon2)
+    cmd: sudo apt install python3-pip
+
+step 4.5: now install virtual environment or venv on remote ~/ server location
+    cmd: sudo apt install python3-venv
     
-step 4.3: 
+step 4.6: create venv on remote server
+    cmd: python3 -m venv venv_location/venv_name(I always use venv as name)
     
+    example: python3 -m venv venv (in remote project directory) check ls command in directory to see if venv created
+
+step 4.7: activate virtual environment in remote
+    cmd: source venv/bin/activate
+    --> virtual environmanet should be activated now. we will see (venv) at the left side of our CLI prompt if it is activated
+    --> also we need to make sure we wre on our right directory(where project root files are like app.py, requirements.txt etc we can check it again by ls command)
+
+step 4.8: now lets install all the dependencies from the uploaded requirements.txt
+    cmd: pip install -r requirements.txt
+    --> this will install all the packages/dependencies we need for the project
+    
+##### next step is to grab environment veriable/secret keys from local machine ####
+    ref: https://www.youtube.com/watch?v=goToXTC96Co&ab_channel=CoreySchafer timestamp: 37:30
+
+
+#### now lets test the remote server ####
+
+step 4.9: lets see what is in our main_app.py file has by
+    cmd: cat app_name.py
+    
+    --> this will show us the file content in .py file. NOTE: this is a nice trick to see quickly the file contents which is hugely useful in times
+    
+    after that we need to test the server by temporarily exporting the project to see from outside world.
+    
+    cmd: export FLASK_APP=run.py
+    cmd: flask run --host=0.0.0.0 
+    
+    note: both of those command has to be exactly as showed here. if everything is correct this commands will spin up the server in http://0.0.0.0:5000/ 
+    
+    now if we go to our ip_address:5000 we will see our project is working
+    
+    !DEBUG: ok so in this step I came across an annoying problem where my site static files were not serving correctly but my html files were! 
+            After few hours of debugging and thorough check I found out that it was NGINX which had not the right permission to read the static files! weird eh?
+            so I have to give right permission to NGINX. First I had to find out the NGNIX_user_name in ngnix.conf (usually this config file lies in /etc directory)
+            also usually the user name is www-data
+
+            Since Nginx is handling the static files directly, it needs access to the appropriate directories. 
+            We need to give it executable permissions for our home directory. The safest way to do this is to add the Nginx user to our own user group. 
+            We can then add the executable permission to the group owners of our home directory, giving just enough access for Nginx to serve the files:
+    
+            cmd: sudo usermod -a -G your_user www-data 
+            
+            --> this will add the nginx user to our own user group
+            --> example: sudo usermod -a -G tusar www-data
+            
+            cmd: sudo chown -R :www-data /path/to/your/static/folder
+            
+            --> this will give nginx correct permission to read and serve the static files
+            
+
+
+step 4.10: 
+
+
+
+
+
 
 
 
