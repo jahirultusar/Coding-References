@@ -1,1 +1,16 @@
 """This is a walkthrough of customr domain configuration after cloud server setup"""
+
+DNS or Domain Name System is a naming system or identifier for web, site, app and services. like google has an address: 8.8.8.8
+In this document I will explain the checklist and the process of acquiring an IP Address for a web app.
+
+# DNS Set-Up Checklist
+
+  step 1: Register (purchase) a domain name if you haven't already.
+          
+          After you purchase a domain, log in to your domain register,s control panel and set the name servers for your domain name to 
+          the desired name servers. name servers usually provided by hosting company like AWS, Godaddy etc
+          
+  step 2: Set your domain name to desired server where your web app is. It may take upto 24 hours or more for the change to take effect.
+  step 3: Use the DNS manager to add some basic DNS records.
+  step 4: Set reverse DNS (if needed)
+  step 4: If you have any special DNS needs, such as using a third-party email server, add additional DNS records to create a custom configuration.
