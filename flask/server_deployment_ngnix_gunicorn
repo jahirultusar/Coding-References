@@ -1,6 +1,6 @@
 """ This is a step by guide to configure, test and deploy flask app to a cloud server """ 
 """ These steps may vary slightly depending on hosting provider but mostly same for all linux based servers """ 
-""" Credit goes to brilliant Corey Schafer and his youtube video. link: https://www.youtube.com/watch?v=goToXTC96Co """
+""" Credit goes to brilliant teacher Corey Schafer """
 
 
 Part 1: Server Configuration
@@ -211,7 +211,42 @@ step 4.9: lets see what is in our main_app.py file has by
     note: both of those command has to be exactly as showed here. if everything is correct this commands will spin up the server in http://0.0.0.0:5000/ 
     
     now if we go to our ip_address:5000 we will see our project is working
+ 
+ step 4.10: now let's install nginx aand gunicorn
     
+        / we need to make sure we are still in our virtual environment while we do these
+ 
+    cmd: sudo apt install nginx --> is gonna handle our web server like static files etc
+         pip install gunicorn --> is gonna serve our python scripts
+         
+step 4.11: now let's confugure nginx
+    
+        / first we need to remove default nginx sites-enabled config file. usually the directory for it is: /etc/nginx/sites-enabled/default we can also check it before we remove it by cd into that directory
+        
+    cmd: sudo rm /etc/nginx/sites-enabled/default
+    
+        / now lets create a new config file
+    
+    cmd: sudo nano /etc/nginx/sites-enabled/pick_any_name
+    
+        / in this config file we define our server and static file locations for nginx as follows
+        
+            server {
+                    listen 80;
+                    server_name cloud/our_ip_iddress;
+                    
+                    location /static {
+                        alias /project_path/static_folder_directory; --> we can also use root instead of alias but in some specific cases. also writing with forward slash / after is recommended in some cases. like /static/
+                    }
+                    
+                    location / {                          --> this will handover http requests to gunicorn
+                        proxy_pass http://localhost:8000; 
+                        include /etc/nginx/proxy_params;
+                        proxy_redirect off;
+                    }
+            }
+              
+ 
     !DEBUG: ok so in this step I came across an annoying problem where my site static files were not serving correctly but my html files were! 
             After few hours of debugging and thorough check I found out that it was Nginx which had not the right permission to read the static files! weird eh?
             so I have to give right permission to Nginx. First I had to find out the Nginx_user_name in nginx.conf (usually this config file lies in /etc directory)
@@ -229,19 +264,104 @@ step 4.9: lets see what is in our main_app.py file has by
                 cmd: sudo chown -R :www-data /path/to/your/static/folder
 
                 --> this will give Nginx correct permission to read and serve the static files
+                
+                also I needed to fix site-enabled section in etc/nginx file to setup the location of static file  
             
 
+step 4.12: now we can update the ufw ports
+    
+        / first allow port 80
+        cmd: sudo ufw allow 80
+        
+        / then disable port 5000
+        cmd ufw delete allow 5000
+    
+        / the enable/update the new ufw rules
+        cmd: sudo ufw enable
+        
+        // then restart the nginx server
+        cmd: sudo systemctl restart nginx --> this will start nginx server but not gunicorn! next step ¬
 
-step 4.10: 
+
+step 4.13: now lets run gunicorn
+
+        cmd: gunicorn -w 3 app:app
+        
+        // ok so here is the explanation of it. 
+        
+        gunicorn = gunicorn server (duh!)
+        -w = workers 
+            --> sounds prehistoric but thats how it is. simple but vauge :( so in gunicorn architecture it means that there is a central master process that manages a set of worker processes. 
+                The master never knows anything about individual clients. All requests and responses are handled completely by worker processes.
+                to know more plz visit: https://docs.gunicorn.org/en/stable/design.html#:~:text=Gunicorn%20is%20based%20on%20the,handled%20completely%20by%20worker%20processes.
+                
+        3 = worker numbers
+            --> the way we need to calculate the worker numbers are: 
+                -w = (2 x number of our cloud virtual machine core) + 1
+                  so -w = 3 (in my case)
+                  
+                  --> to find out yours just do:
+                      cmd: nproc --all
+                  
+        app: = name of our main script like app.py/main.py etc in my case app.py
+        
+        :app = the variable name that we used to create the app. like
+        
+            app = create_app()
+
+    / vola! now everythin is working! but it's not it! cause we are still in development not production.
 
 
 
+###########################################
+
+Part 5: Production Server and final touches
+
+step 5.1: now we need to configure gunicorn to auto start and restart. we were doing manually thus far. 
+          we are gonna use a software called "SUPERVISOR" for this job
+
+          cmd: sudo apt install supervisor
+
+step 5.2: now we need to setup a configuration file for supervisor
+          
+          cmd: sudo nano /etc/supervisor/conf.d/give_it_a_file_name.conf --> this will create a blank config file
+          
+step 5.3: in the newly created config file, we need to declare few things like
+
+        [program:give_any_name]
+        directory=project_directory/
+        command=project_directory/venv/bin/gunicorn -w 3 app:app
+        user=user_name
+        autostart=true
+        autorestart=true
+        stopasgroup=true
+        killasgroup=true
+        stderr_logfile=/var/log/pick_a_relatabel_name/error_file.err.log
+        stdout_logfile=/var/log/same_name_as_last_line/error_file.out.log
+
+        to get a full picture plz go to: <I will find a refernce link> 
 
 
-
-
-
-
+step 5.4: now lets create directory for log files
+        
+        cmd: sudo mkdir -p /var/log/same_name_as_var_log_file 
+        
+        / then make error files to this directory we defined earlier in supervisor config file
+        
+        cmd: sudo touch /var/log/same_directory_we_created_last_command/error_file.err.log
+        cmd: sudo touch /var/log/same_directory_as_last_command/error_file.out.log
+        
+        !DEBUG: please check carefully that defined logfile links and directory is the same as we created. easy mistake can be made here 
+        
+        / then restatrt the supervisor
+        
+        cmd: sudo supervisorctl reload
+        
+        / now check the app if its running in the server! mine does.. YEEEEHHHAAA
+        / to be more precise, restart the virtual machine (sudo reboot) and see if it's still running. give it couple of minutes to reboot.
+        
+        
+        THAT'S ALL! WELL DONE ME, err.. YOU and EVERYONE :)
 
 #####  tips and tricks  #####
 
