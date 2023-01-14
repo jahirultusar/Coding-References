@@ -75,4 +75,24 @@ step 2: now certbot will give you couple of options like default or wildcard I a
             Confirm that Certbot worked
             To confirm that your site is set up properly, visit https://yourwebsite.com/ in your browser and look for the lock icon in the URL bar.
             
+            
+!DEBUG: now we need to chek if we are allowing port:443 to allow the traffic
+
+    if yes then site should work securely
+    if not then let's allow port 443
+
+       cmd: sudo ufw allow https
+       cmd: sudo systemctl restart nginx
+
+     vola! now we are secured!
+    
+    Also if we test our nginx server by
+        
+        cmd: nginx -t
+            / we might get some error which is normal
+            
+    we can check with sudo and it will work fine
+    
+        cmd: sudo nginx -t
+
      # That's all!       
