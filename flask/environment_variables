@@ -1,0 +1,8 @@
+""" This is instruction how to hide secret keys and passwords in python/flask through environment variables in Linux or Unix systems. not Windows!"""
+
+# Linux and Unix only!
+
+
+to do this first we need to import os library
+
+db_
