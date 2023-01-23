@@ -23,4 +23,4 @@ steps:
       19. test test test
       20. if you can do all those and app is working then take a bow
       
-      now we need to configure custom domain and SSL, but before that go for a walk you maniac!
+      now we need to configure custom domain and SSL but before that, go for a walk you maniac!
