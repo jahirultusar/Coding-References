@@ -14,3 +14,12 @@ step 2: install node.js
   verify installation
     cmd: node -v (if a version number there then its installed!)
     
+// comment in JS
+  single line comment:  //this is a comment
+  multiline comment: /* This is a
+                       multiline comment*/
+                       
+strings: like python anything in 'single' and "double quotes" are strings
+
+# semicolon or not?
+  Even though JS doesnt enforce it but good to do semicolons for standards
