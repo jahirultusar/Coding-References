@@ -14,6 +14,9 @@ step 2: install node.js
   verify installation
     cmd: node -v (if a version number there then its installed!)
     
+    https://www.linuxtuto.com/how-to-install-reactjs-on-ubuntu-22-04/
+  
+    
 // comment in JS
   single line comment:  //this is a comment
   multiline comment: /* This is a
