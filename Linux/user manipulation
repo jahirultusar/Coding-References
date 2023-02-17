@@ -1,0 +1,13 @@
+// USER MANIPULATION for LINUX
+
+
+# Changing permission of folder and subfolders 
+ 
+  cmd: sudo chown -R jarvis:jarvis /home/jarvis/Desktop/next
+  
+    // sudo = if user is permitted 
+    // chown = ownership
+    // -R = recursively -> recursive directory listing
+    // jarvis = from user 
+    // jarvis after : = to user
+    // / ..  = directory path 
