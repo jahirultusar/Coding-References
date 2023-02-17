@@ -1,4 +1,19 @@
-NEXT JS 13
+NEXT_JS: VERSION 13
 
-// start the server for development build
-   cmd: npm run dev
+# This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`]
+   (https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+
+// start the server for development build 
+   
+      for npm package manager 
+         cmd: npm run dev
+   or 
+      for yarn package manager
+         cmd: yarn dev
+   or 
+      for pnpm package manager
+         cmd: pnpm dev
+   
+   Let's open [http://localhost:3000](http://localhost:3000) with our browser to see the result.
+   We can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
