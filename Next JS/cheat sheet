@@ -1,0 +1,4 @@
+NEXT JS 13
+
+// start the server for development build
+   cmd: npm run dev
