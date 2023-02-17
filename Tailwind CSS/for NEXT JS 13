@@ -1,0 +1,26 @@
+in shell (project directory!)
+
+  //  
+  
+ #1: npm install -D tailwindcss postcss autoprefixer
+  
+ #2: npx tailwindcss init -p
+ 
+ #3: in tailwind module config file copy and paste:
+ 
+      content: [
+      "./app/**/*.{js,ts,jsx,tsx}",
+      "./pages/**/*.{js,ts,jsx,tsx}",
+      "./components/**/*.{js,ts,jsx,tsx}",
+
+      // Or if using `src` directory:
+      "./src/**/*.{js,ts,jsx,tsx}",
+    ],
+    
+  #4: in global.css file:
+    
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+    
+    thats allQ
