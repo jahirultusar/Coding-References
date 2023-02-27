@@ -9,4 +9,5 @@
 
 
   //run
-    sudo -u postgres -i
+    cmd: sudo -u postgres -i
+    cmd: psql
