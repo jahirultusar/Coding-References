@@ -1,3 +1,6 @@
+
+# For LINUX 
+
 // installation script
   sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -8,6 +11,21 @@
   // helpful link: https://serverfault.com/questions/601140/whats-the-difference-between-sudo-su-postgres-and-sudo-u-postgres
 
 
-  //run
-    cmd: sudo -u postgres -i
-    cmd: psql
+test run PostgresSQL by calling it psql in the terminal. 
+  or check cmd: which psql //to see the installed path
+  or check psql --version  // to check which and if postgres already installed
+
+
+  //after that just simply call
+    cmd: psql // if everything alright then databease will be connected and running
+    
+    if not and giving an error let's say role "user_name" does not exist then we need to create a new user. 
+    
+    to do that
+      first change the user to postgres (default user)
+        cmd: sudo -u postgres -i
+          // it will look something like postgres@user:~$ that means we are as default user and now we can create a new user
+          
+          then create a new user
+          cmd: createuser user_name // example: createuser jarvis:=> Postgres automatically creates the user (role with login permissions) in both cases.
+      cmd: psql
