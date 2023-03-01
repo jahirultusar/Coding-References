@@ -1,4 +1,8 @@
 # Create a New User in PostgreSQL
+# lingo {
+  cmd: == command in shell
+}
+  
 
 Note: The postgres user is the PostgreSQL superadmin created during the installation process.
 
@@ -83,6 +87,7 @@ The terminal prompts to enter the password twice. The password itself or the len
   and then
   
     cmd: \du
+  
   
   
   TBC.. 
