@@ -1,7 +1,5 @@
 # Create a New User in PostgreSQL
-# lingo {
-  cmd: == command in shell
-}
+# lingo { cmd: == command in shell }
   
 
 Note: The postgres user is the PostgreSQL superadmin created during the installation process.
