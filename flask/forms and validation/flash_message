@@ -1,0 +1,26 @@
+""" Sample flash nessage """
+
+
+# in .py file
+
+from flask import flash
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success') // <-- flash message here on validation
+        return redirect(url_for('home'))
+    return render_template('register.html', title='Register', form=form)
+
+
+# in the page where we wanna see the message
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+    {% endif %}
+{% endwith %}
