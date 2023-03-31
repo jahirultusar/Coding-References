@@ -6,3 +6,6 @@ scp:
   
 restore database:
   psql -h localhost -U postgres -d testdata < backup.sql 
+
+restart the service:
+  sudo systemctl restart postgresql.service
