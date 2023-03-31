@@ -1,0 +1,8 @@
+dump/ backup:
+  pg_dump -U postgres -h localhost testdata > backup.sql
+
+scp:
+  scp backup.sql ems@ip:/home/ems/backup.sql
+  
+restore database:
+  psql -h localhost -U postgres -d testdata < backup.sql 
