@@ -1,0 +1,11 @@
+docker run: This command is used to run a container from an image. For example, docker run hello-world will run a container from the hello-world image.
+
+docker ps: This command is used to list all the running containers.
+
+docker stop: This command is used to stop a running container.
+
+docker rm: This command is used to remove a container.
+
+docker images: This command is used to list all the available images.
+
+docker rmi: This command is used to remove an image.
