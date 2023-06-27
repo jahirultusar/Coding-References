@@ -1,6 +1,8 @@
 docker run: This command is used to run a container from an image. For example, docker run hello-world will run a container from the hello-world image.
 
 docker ps: This command is used to list all the running containers.
+            or for more info use
+              cmd: docker ps -a
 
 docker stop: This command is used to stop a running container.
 
