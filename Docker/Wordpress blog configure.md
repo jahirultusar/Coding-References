@@ -17,11 +17,12 @@
    ```
 
 6. Run WordPress Container: Start the WordPress container, linking it to the MySQL container and exposing the necessary ports. Run the following command:
+     !important: use 8181:80 port if you already have something running on your 8080!
    ```bash
    sudo docker run -d --network wpnetwork -p 8080:80 --name wordpress -e WORDPRESS_DB_HOST=wordpressdb -e WORDPRESS_DB_USER=wpuser -e WORDPRESS_DB_PASSWORD=<your_db_password> -e WORDPRESS_DB_NAME=wordpress wordpress:latest
    ```
 
-7. Configure Nginx: Update your Nginx configuration to proxy requests to the WordPress container. In your existing Nginx configuration file (e.g., `/etc/nginx/sites-enabled/mywebsite`), add a new location block for the WordPress blog:
+8. Configure Nginx: Update your Nginx configuration to proxy requests to the WordPress container. In your existing Nginx configuration file (e.g., `/etc/nginx/sites-enabled/mywebsite`), add a new location block for the WordPress blog:
    ```
    location /blog {
        proxy_pass http://localhost:8080;
@@ -30,13 +31,13 @@
    }
    ```
 
-8. Test and Restart Nginx: Test your Nginx configuration for any syntax errors, and if everything looks fine, restart Nginx to apply the changes. Run the following commands:
+9. Test and Restart Nginx: Test your Nginx configuration for any syntax errors, and if everything looks fine, restart Nginx to apply the changes. Run the following commands:
    ```bash
    sudo nginx -t
    sudo systemctl restart nginx
    ```
 
-9. Access Your WordPress Blog: You should now be able to access your WordPress blog by visiting your domain followed by `/blog`, for example: `https://yourdomain.com/blog`.
+10. Access Your WordPress Blog: You should now be able to access your WordPress blog by visiting your domain followed by `/blog`, for example: `https://yourdomain.com/blog`.
 
 That's it! You should now have your Flask website and WordPress blog running side by side on your remote server. Your Flask website will continue to be served by Nginx and Gunicorn, while the WordPress blog will be served by the WordPress container through Nginx reverse proxy.
 
