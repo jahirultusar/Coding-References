@@ -19,9 +19,10 @@ Most of the time, it is most convenient to use relative paths, which require les
 For example, suppose you are currently working in your home directory and wish to move to the /usr/bin directory. The following two ways will bring you to the same directory from your home directory:
 
 Absolute pathname method
-$ cd /usr/bin
+    $ cd /usr/bin
+    
 Relative pathname method
-$ cd ../../usr/bin
+    $ cd ../../usr/bin
 
 In this case, the absolute pathname method requires less typing and is less error-prone.
 
