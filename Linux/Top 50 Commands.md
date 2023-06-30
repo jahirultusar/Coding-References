@@ -4,7 +4,10 @@
 
 **pwd** - Print working directory command in Linux
 
-**cd** - Linux command to navigate through directories
+**cd ~** or **cd** - Linux command to navigate through directories
+        **cd ..**  - Change to parent directory (..)
+        **cd -**   - Change to previous working directory; - (minus)
+
 
 **mkdir** - Command used to create directories in Linux
 
