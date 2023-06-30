@@ -3,10 +3,12 @@
 There are two ways to identify paths:
 
 # Absolute pathname
+
     An absolute pathname begins with the root directory (/) and follows the tree, branch by branch, until it reaches the desired directory or file. Absolute paths always start with /.
 
 
-#Relative pathname
+# Relative pathname
+
     A relative pathname starts from the present working directory. Relative paths never start with /.
 
 
