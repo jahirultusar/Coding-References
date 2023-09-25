@@ -1,0 +1,6 @@
+#1 make sure SSH is running in VM 
+
+#2 make sure VM is in bridged-network! IMPORTANT
+
+#3 find VM ip address
+  cmd: ip addr
