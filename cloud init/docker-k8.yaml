@@ -1,3 +1,11 @@
+# to launch cloud init in multipass
+#  cmd: multipass launch --name <vm_name> --cloud-init yaml_file.yaml
+#or
+#  cmd: multipass launch -n <vm_name> --cloud-init yaml_file.yaml
+
+#####################################################################
+
+
 #cloud-config
 package_update: true
 package_upgrade: true
