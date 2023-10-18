@@ -4,7 +4,7 @@
 
 
 Part 1: Server Configuration
-#####  for Nginx-Gunicorn server For Linux ####
+#####  for Nginx-Gunicorn server For Linux ###
     
 #### Configure Linux sever ####
     
