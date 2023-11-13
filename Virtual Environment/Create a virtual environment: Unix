@@ -1,4 +1,5 @@
 This is a step by step guide to create a virtual environment for Unix based system
+all the command are tested in Ubuntu through terminal
 
 # Step 1: Installing pip
   after choosing the directory open the directory in bash terminal. then run following command:
@@ -13,6 +14,8 @@ This is a step by step guide to create a virtual environment for Unix based syst
     python3 -m pip install --user virtualenv #Note: not needed this step if virtualenv created in the system before.
   
  # Step 3: Creating a virtual environment
+    go to your project directory. then:
+
     python3 -m venv virtual_environment_name #Note: Start from this step if system already prepped for V environment
     
  # Step 4: Activating a virtual environment
