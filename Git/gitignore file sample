@@ -1,5 +1,14 @@
 """ This is a .gitignore file"""
 
+# database migration
+/migrations/
+
+# Ignore instance folder
+/instance/
+
+# Ignore database files
+*.db
+
 
 .gitignore
 .DS_Store
