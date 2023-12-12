@@ -1,0 +1,54 @@
+# Top-most EditorConfig file
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# C and C++ files
+[*.{c,cpp,h,hpp}]
+indent_size = 4
+
+# Rust files
+[*.rs]
+indent_size = 4
+
+# Go files
+[*.go]
+indent_size = 4
+
+# Python files
+[*.py]
+indent_size = 4
+
+# JavaScript and TypeScript files
+[*.{js,ts}]
+indent_size = 2
+
+# HTML files
+[*.html]
+indent_size = 2
+
+# CSS and SCSS files
+[*.{css,scss}]
+indent_size = 2
+
+# YAML files
+[*.yaml, *.yml]
+indent_size = 2
+
+# Ruby files
+[*.rb]
+indent_size = 2
+
+# Java properties files
+[*.properties]
+indent_size = 2
+
+
+[!NOTE]
+[Read my blog post here]: 
