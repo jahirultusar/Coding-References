@@ -1,4 +1,4 @@
-# Simply add this code to your python project's root folder
+# Simply add this code to your python project's root folder as filename .pylintrc
 
 [pylint]
 ignore=
