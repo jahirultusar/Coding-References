@@ -51,4 +51,6 @@ indent_size = 2
 
 
 [!NOTE]
-[Read my blog post here]: https://blog.jahirultusar.com/autoindent-according-to-language-in-vs-code/
+> you need to create an .editorconfig file at the root of their project and copy this code there
+
+[Read my blog post here](https://blog.jahirultusar.com/autoindent-according-to-language-in-vs-code/)
