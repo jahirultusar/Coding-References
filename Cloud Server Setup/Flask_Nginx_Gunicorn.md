@@ -16,6 +16,7 @@ step 1.2: login to remote server via ssh
 step 1.3: after logging in do a system wide update and upgrade
     cmd: apt update && apt upgrade (first time recommended)
     cmd: sudo apt update
+        also can do a cheeky sudo reboot after that just in case ;)
     
 step 1.4: set hostname
     cmd: hostnamectl set-hostname [hostname ie: flask-server]
