@@ -22,7 +22,7 @@
     
 > Verify that Apache2 is uninstalled by checking its status:
 
-  sudo systemctl status apache2
+    sudo systemctl status apache2
 
 
 * If Apache2 is no longer installed, you should see a message indicating that the service is not found or not installed.
