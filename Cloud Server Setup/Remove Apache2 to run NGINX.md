@@ -1,5 +1,9 @@
 # To uninstall and delete Apache2 from your system, you can follow these steps:
 
+> Check if Apache server exists in the system
+
+    sudo systemctl status apache2
+
 > Stop the Apache2 service:
 
     sudo systemctl stop apache2
