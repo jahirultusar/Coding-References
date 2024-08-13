@@ -27,6 +27,11 @@ step 1.5: add hostname to the host file
         cmd: nano /etc/hosts
         then under the localhost IP(127.0.0.1) in new line write VPS or dedicated server IP address provided by cloud provider and <tab> newly_created_hostname. like 00.00.00.1 <tab> your_newly_created_hostname ie: flask-server
         then ctrl+x to back out and save on prompt and then ctrl+x to back in the shell again
+        
+        to double check the hosts file do
+        cmd: cat /etc/hosts
+            so now we can see the changed file
+
  
 step 1.6: add a limited user with sudo privilege (currently we are on root!)
     cmd: adduser [username]
