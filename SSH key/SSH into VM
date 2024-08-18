@@ -2,5 +2,7 @@
 
 #2 make sure VM is in bridged-network! IMPORTANT
 
+alternate option #2: copy ssh pub id from local to vm manually
+
 #3 find VM ip address
   cmd: ip addr
