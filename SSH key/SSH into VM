@@ -1,6 +1,12 @@
 #1 make sure SSH is running in VM 
 
 #2 make sure VM is in bridged-network! IMPORTANT
+  i.e. for multipass:
+  $ make sure multipass instance is stop
+  $ multipass networks #check multipass network
+  $ multipass set local.bridged-network=enp34s0 #your enp34s0 or network name might be different
+  $ multipass set local.terraformPad.bridged=true #your terraformPad or multipass instance name here
+  $ multipass get local.terraformPad.bridged #check if network is bridged with the multipass instance
 
 alternate option #2: copy ssh pub id from local to vm manually
 
