@@ -12,3 +12,12 @@ alternate option #2: copy ssh pub id from local to vm manually
 
 #3 find VM ip address
   cmd: ip addr
+
+or simpler approach
+[ 
+  #For Multipass VM - ignore all those and just input command below
+  $ multipass shell vm_name
+]
+
+
+
