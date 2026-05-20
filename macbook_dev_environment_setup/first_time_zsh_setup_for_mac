@@ -1,0 +1,322 @@
+# macOS zsh dev environment setup by I,Jay
+
+A minimal, fast zsh setup for macOS. No Oh My Zsh — just the tools you actually need.
+
+---
+
+## Stack
+
+- **Starship** — minimal, fast prompt
+- **zsh-autosuggestions** — ghost-text completions from history
+- **zsh-syntax-highlighting** — live command coloring
+- **fzf** — fuzzy finder for history, files, directories
+- **zoxide** — smarter `cd` that learns your frequent dirs
+- **eza** — modern `ls` replacement
+- **iTerm2** — better terminal for macOS
+- **JetBrainsMono Nerd Font** — coding font with icon support
+- **git** — version control
+- **gh** — GitHub CLI
+- **awscli** — AWS command line interface
+- **terraform** — infrastructure as code
+
+---
+
+## Step 1 — Back up your existing config
+
+```bash
+cp ~/.zshrc ~/.zshrc.backup
+```
+
+if you want to revert everything back at any point:
+
+```bash
+cp ~/.zshrc.backup ~/.zshrc && source ~/.zshrc
+```
+
+---
+
+## Step 2 — Install tools
+
+```bash
+brew install starship zsh-autosuggestions zsh-syntax-highlighting fzf zoxide eza
+```
+
+---
+
+## Step 3 — Set up fzf key bindings
+
+```bash
+$(brew --prefix)/opt/fzf/install --key-bindings --completion --no-bash --no-fish
+```
+
+Answer `y` to both prompts.
+
+---
+
+## Step 4 — Replace ~/.zshrc
+
+```zsh
+# ── History ──────────────────────────────────────────────
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+
+# ── Completions ──────────────────────────────────────────
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}=A-Z'
+
+# ── Plugins ──────────────────────────────────────────────
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.fzf.zsh
+
+# ── fzf config ───────────────────────────────────────────
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border=none'
+export FZF_CTRL_R_OPTS='--preview "echo {}" --preview-window=down:3:hidden:wrap'
+
+# ── zoxide (smart cd) ────────────────────────────────────
+eval "$(zoxide init zsh)"
+alias cd='z'
+
+# ── eza (modern ls) ──────────────────────────────────────
+alias ls='eza --icons=auto --group-directories-first'
+alias ll='eza -lah --icons=auto --group-directories-first --git'
+alias lt='eza --tree --level=2 --icons=auto'
+
+# ── Docker ───────────────────────────────────────────────
+alias d='docker'
+alias dc='docker compose'
+alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dlog='docker logs -f'
+alias dex='docker exec -it'
+
+# ── Kubernetes ───────────────────────────────────────────
+alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get services'
+alias kns='kubectl config set-context --current --namespace'
+alias klog='kubectl logs -f'
+alias kex='kubectl exec -it'
+compdef k=kubectl
+
+# ── Quality of life ──────────────────────────────────────
+alias ..='cd ..'
+alias ...='cd ../..'
+alias gs='git status'
+alias gd='git diff'
+alias gl='git log --oneline --graph --decorate -20'
+alias mkdir='mkdir -p'
+alias cp='cp -iv'
+alias mv='mv -iv'
+
+# ── AWS ──────────────────────────────────────────────────
+export AWS_COMPLETER_PATH='/usr/local/bin/aws_completer'
+autoload bashcompinit && bashcompinit
+complete -C '/usr/local/bin/aws_completer' aws
+
+# ── GitHub CLI ───────────────────────────────────────────
+eval "$(gh completion -s zsh)"
+
+# ── Terraform ────────────────────────────────────────────
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+# ── Starship prompt ──────────────────────────────────────
+eval "$(starship init zsh)"
+```
+
+---
+
+## Step 5 — Create Starship config
+
+```bash
+mkdir -p ~/.config
+nano ~/.config/starship.toml
+```
+
+Paste this:
+
+```toml
+add_newline = false
+command_timeout = 500
+
+format = "$directory$git_branch$git_status$python$kubernetes$character"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold white"
+
+[git_branch]
+format = " [$branch]($style) "
+style = "bold dimmed white"
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "bold yellow"
+conflicted = "!"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+modified = "~"
+untracked = "?"
+staged = "+"
+
+[python]
+format = '[(\($virtualenv\))]($style) '
+style = "bold dimmed cyan"
+detect_files = ["requirements.txt", "pyproject.toml", ".python-version"]
+
+[kubernetes]
+disabled = true
+format = '[$symbol$context\($namespace\)]($style) '
+style = "bold dimmed yellow"
+symbol = "☸ "
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+```
+
+---
+
+## Step 6 — Install iTerm2
+
+```bash
+brew install --cask iterm2
+```
+
+---
+
+## Step 7 — Install Nerd Font
+
+```bash
+brew install --cask font-jetbrains-mono-nerd-font
+```
+
+Then in iTerm2: `Cmd+,` → **Profiles** → **Text** → change font to `JetBrainsMono Nerd Font Mono`.
+
+---
+
+## Step 8 — Install dev staples
+
+### git & GitHub CLI
+```bash
+brew install git gh
+```
+
+### AWS CLI
+> Install via the official pkg installer — avoids Python conflicts with brew.
+
+```bash
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+rm AWSCLIV2.pkg
+```
+
+Verify:
+```bash
+aws --version
+```
+
+### Terraform
+Follow the official HashiCorp install guide:
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+
+Verify:
+```bash
+terraform --version
+```
+
+---
+
+## Step 9 — Reload shell
+
+```bash
+source ~/.zshrc
+```
+
+---
+
+## Key bindings
+
+| Key | Action |
+|---|---|
+| `Ctrl+R` | Fuzzy search command history |
+| `Ctrl+T` | Fuzzy search files in current dir |
+| `Alt+C` | Fuzzy cd into a subdirectory |
+| `→` right arrow | Accept autosuggestion |
+| `z foo` | Jump to most-used dir matching "foo" |
+| `zi` | Interactive fuzzy jump with zoxide |
+
+---
+
+## What shows in the prompt
+
+- Current directory (dimmed, truncated to 3 levels)
+- Git branch name
+- Git status — `~` modified, `+` staged, `?` untracked, `⇡⇣` ahead/behind remote
+- Python venv name when active
+- `❯` green on success, red on error
+
+---
+
+## Autocomplete enabled for
+
+- `git` — branches, commands, flags
+- `gh` — GitHub CLI commands
+- `aws` — all AWS services and subcommands
+- `terraform` — all terraform commands and flags
+- `kubectl` / `k` — all kubectl commands
+
+---
+
+## Aliases reference
+
+| Alias | Command |
+|---|---|
+| `ls` | `eza` with icons |
+| `ll` | `eza` long list with git status |
+| `lt` | `eza` tree view |
+| `..` / `...` | go up 1 / 2 directories |
+| `gs` | `git status` |
+| `gd` | `git diff` |
+| `gl` | `git log` one-line graph |
+| `d` | `docker` |
+| `dc` | `docker compose` |
+| `dps` | `docker ps` formatted |
+| `dlog` | `docker logs -f` |
+| `dex` | `docker exec -it` |
+| `k` | `kubectl` |
+| `kgp` | `kubectl get pods` |
+| `kgs` | `kubectl get services` |
+| `kns` | `kubectl config set-context --current --namespace` |
+| `klog` | `kubectl logs -f` |
+| `kex` | `kubectl exec -it` |
+
+---
+
+## AWS default region
+
+Once you know your team's region, add this to `~/.zshrc`:
+
+```zsh
+export AWS_DEFAULT_REGION=eu-west-1  # replace with your team's region
+```
+
+Then reload:
+```bash
+source ~/.zshrc
+```
+
+---
+
+## Enabling kubernetes prompt (when needed)
+
+The kube context is hidden by default. Toggle it on/off with:
+
+```bash
+starship toggle kubernetes
+```
